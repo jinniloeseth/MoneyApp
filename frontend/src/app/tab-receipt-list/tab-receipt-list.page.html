@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Transaksjoner</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    @for (t of transactions; track t.id) {
+      <ion-item>
+        <ion-icon [name]="t.category.icon" slot="start" [style.color]="t.category.color"></ion-icon>
+        <ion-label>
+          <h2>{{ t.description }}</h2>
+          <p>{{ t.category.name }} · {{ t.date }}</p>
+        </ion-label>
+        <ion-note slot="end">{{ t.amount }} kr</ion-note>
+      </ion-item>
+    }
+  </ion-list>
+</ion-content>
