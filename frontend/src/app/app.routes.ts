@@ -21,4 +21,12 @@ export const routes: Routes = [
     path: 'tab-settings',
     loadComponent: () => import('./tab-settings/tab-settings.page').then( m => m.TabSettingsPage)
   },
+  {
+    path: 'tab-settings-categories',
+    loadComponent: () => import('./tab-settings-categories/tab-settings-categories.page').then( m => m.TabSettingsCategoriesPage)
+  },
+  {
+    path: '',
+    loadChildren: () => import('./tabs/tabs.routes').then((m) => m.routes),
+  }
 ];

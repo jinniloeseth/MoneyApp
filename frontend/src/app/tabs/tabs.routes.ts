@@ -19,12 +19,21 @@ export const routes: Routes = [
       {
         path: 'overview',
         loadComponent: () =>
-          import('../tab-spending-overview/tab-spending-overview.page').then((m) => m.TabSpendingOverviewPage),
+          import('../tab-spending-overview/tab-spending-overview.page').then(
+            (m) => m.TabSpendingOverviewPage
+          ),
       },
       {
         path: 'settings',
         loadComponent: () =>
           import('../tab-settings/tab-settings.page').then((m) => m.TabSettingsPage),
+      },
+      {
+        path: 'settings/categories',
+        loadComponent: () =>
+          import('../tab-settings-categories/tab-settings-categories.page').then(
+            (m) => m.TabSettingsCategoriesPage
+          ),
       },
       {
         path: '',

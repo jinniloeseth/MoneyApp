@@ -1,0 +1,18 @@
+.amount {
+  font-size: 48px;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+ion-input,
+ion-select {
+  margin-bottom: 16px;
+}
+
+.date-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 8px 0 24px;
+}

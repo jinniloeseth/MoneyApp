@@ -1,19 +1,51 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { IonContent, IonHeader, IonTitle, IonToolbar } from '@ionic/angular';
+import { Component } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import {
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+  IonList,
+  IonItem,
+  IonLabel,
+  IonIcon,
+  IonAvatar,
+} from '@ionic/angular';
+import { addIcons } from 'ionicons';
+import {
+  pricetagsOutline,
+  colorPaletteOutline,
+  cashOutline,
+  downloadOutline,
+  logOutOutline,
+  chevronForwardOutline,
+  personOutline,
+} from 'ionicons/icons';
 
 @Component({
   selector: 'app-tab-settings',
   templateUrl: './tab-settings.page.html',
   styleUrls: ['./tab-settings.page.scss'],
-  imports: [IonContent, IonHeader, IonTitle, IonToolbar, CommonModule, FormsModule]
+  imports: [
+    RouterLink,
+    IonHeader, IonToolbar, IonTitle, IonContent,
+    IonList, IonItem, IonLabel, IonIcon, IonAvatar,
+  ],
 })
-export class TabSettingsPage implements OnInit {
+export class TabSettingsPage {
+  userName = 'Brukernavn';
+  userEmail = 'bruker@epost.no';
+  profileImageUrl: string | null = null; // settes etter Google-innlogging
 
-  constructor() { }
-
-  ngOnInit() {
+  constructor() {
+    addIcons({
+      pricetagsOutline,
+      colorPaletteOutline,
+      cashOutline,
+      downloadOutline,
+      logOutOutline,
+      chevronForwardOutline,
+      personOutline,
+    });
   }
-
 }
