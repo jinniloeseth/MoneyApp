@@ -7,16 +7,17 @@ import {
   IonContent,
   IonButtons,
   IonBackButton,
+  IonButton,
   IonList,
-  IonListHeader,
   IonItem,
   IonLabel,
   IonIcon,
   IonInput,
-  IonButton,
+  IonModal,
 } from '@ionic/angular';
 import { addIcons } from 'ionicons';
 import {
+  addOutline,
   cartOutline,
   homeOutline,
   carOutline,
@@ -39,9 +40,9 @@ import { Category } from '../models/category';
   imports: [
     FormsModule,
     IonHeader, IonToolbar, IonTitle, IonContent,
-    IonButtons, IonBackButton,
-    IonList, IonListHeader, IonItem, IonLabel, IonIcon,
-    IonInput, IonButton,
+    IonButtons, IonBackButton, IonButton,
+    IonList, IonItem, IonLabel, IonIcon,
+    IonInput, IonModal,
   ],
 })
 export class TabSettingsCategoriesPage {
@@ -54,32 +55,59 @@ export class TabSettingsCategoriesPage {
     'airplane-outline', 'pricetag-outline',
   ];
 
-  newName = '';
+  isModalOpen = false;
+  editingId: number | null = null; // null = ny kategori
+  name = '';
   selectedColor = this.colors[0];
   selectedIcon = this.icons[0];
 
   constructor() {
     addIcons({
-      cartOutline, homeOutline, carOutline, gameControllerOutline,
+      addOutline, cartOutline, homeOutline, carOutline, gameControllerOutline,
       restaurantOutline, shirtOutline, medkitOutline, giftOutline,
       airplaneOutline, pricetagOutline, trashOutline,
     });
   }
 
-  addCategory() {
-    const name = this.newName.trim();
-    if (!name) return;
-    const nextId = this.categories.reduce((max, c) => Math.max(max, c.id), 0) + 1;
-    this.categories.push({
-      id: nextId,
-      name,
-      color: this.selectedColor,
-      icon: this.selectedIcon,
-    });
-    this.newName = '';
+  openNew() {
+    this.editingId = null;
+    this.name = '';
+    this.selectedColor = this.colors[0];
+    this.selectedIcon = this.icons[0];
+    this.isModalOpen = true;
   }
 
-  deleteCategory(id: number) {
+  openEdit(c: Category) {
+    this.editingId = c.id;
+    this.name = c.name;
+    this.selectedColor = c.color;
+    this.selectedIcon = c.icon;
+    this.isModalOpen = true;
+  }
+
+  closeModal() {
+    this.isModalOpen = false;
+  }
+
+  save() {
+    const name = this.name.trim();
+    if (!name) return;
+
+    if (this.editingId === null) {
+      const nextId = this.categories.reduce((max, c) => Math.max(max, c.id), 0) + 1;
+      this.categories.push({ id: nextId, name, color: this.selectedColor, icon: this.selectedIcon });
+    } else {
+      this.categories = this.categories.map((c) =>
+        c.id === this.editingId
+          ? { ...c, name, color: this.selectedColor, icon: this.selectedIcon }
+          : c
+      );
+    }
+    this.closeModal();
+  }
+
+  deleteCategory(id: number, event: Event) {
+    event.stopPropagation(); // hindrer at raden åpner redigering
     this.categories = this.categories.filter((c) => c.id !== id);
   }
 }

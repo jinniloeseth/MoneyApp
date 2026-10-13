@@ -35,3 +35,30 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+ion-input,
+ion-select {
+  border: 1px solid var(--ion-color-medium);
+  border-radius: 10px;
+  min-height: 56px;
+  box-sizing: border-box;
+  --padding-start: 14px;
+  --padding-end: 14px;
+}
+
+ion-input .native-wrapper,
+ion-input .input-wrapper {
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+ion-input:focus-within,
+ion-select:focus-within {
+  border-color: var(--ion-color-primary);
+  box-shadow: 0 0 0 1px var(--ion-color-primary);
+}
+
+ion-input::part(native) {
+  padding-left: 14px;
+  padding-right: 14px;
+}

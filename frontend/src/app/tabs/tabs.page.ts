@@ -1,6 +1,6 @@
 import { Component, EnvironmentInjector, inject } from '@angular/core';
+import { Router } from '@angular/router';
 import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/angular';
-import { triangle, ellipse, square } from 'ionicons/icons';
 import { addIcons } from 'ionicons';
 import { receiptOutline, addCircle, calendarOutline, settingsOutline } from 'ionicons/icons';
 
@@ -12,8 +12,13 @@ import { receiptOutline, addCircle, calendarOutline, settingsOutline } from 'ion
 })
 export class TabsPage {
   public environmentInjector = inject(EnvironmentInjector);
+  private router = inject(Router);
 
   constructor() {
     addIcons({ receiptOutline, addCircle, calendarOutline, settingsOutline });
+  }
+
+  goToSettingsRoot() {
+    this.router.navigateByUrl('/tabs/settings');
   }
 }

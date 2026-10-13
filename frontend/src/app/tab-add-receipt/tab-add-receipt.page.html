@@ -5,18 +5,13 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <ion-input
-    class="amount"
-    type="number"
-    inputmode="decimal"
-    placeholder="0"
-    [(ngModel)]="amount"
-  ></ion-input>
+  <div class="amount-display">
+    {{ amount ?? 0 }} kr
+  </div>
 
   <ion-input
     label="Tittel"
     labelPlacement="floating"
-    fill="outline"
     placeholder="F.eks. Håndkrem"
     [(ngModel)]="title"
   ></ion-input>
@@ -24,7 +19,6 @@
   <ion-select
     label="Kategori"
     labelPlacement="floating"
-    fill="outline"
     interface="action-sheet"
     placeholder="Velg kategori"
     [(ngModel)]="selectedCategoryId"
@@ -33,6 +27,15 @@
       <ion-select-option [value]="c.id">{{ c.name }}</ion-select-option>
     }
   </ion-select>
+
+  <ion-input
+    label="Beløp (kr)"
+    labelPlacement="floating"
+    type="number"
+    inputmode="decimal"
+    placeholder="0"
+    [(ngModel)]="amount"
+  ></ion-input>
 
   <div class="date-row">
     <span>Dato</span>

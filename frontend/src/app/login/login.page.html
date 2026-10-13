@@ -1,0 +1,21 @@
+<ion-content class="ion-padding">
+  <div class="login">
+    <div class="logo">
+      <ion-icon name="wallet-outline"></ion-icon>
+    </div>
+    <h1>MoneyApp</h1>
+    <p class="tagline">Hold oversikt over forbruket ditt, enkelt og raskt.</p>
+
+    <div class="buttons">
+      <ion-button expand="block" size="large" (click)="loginWithGoogle()">
+        <ion-icon name="logo-google" slot="start"></ion-icon>
+        Fortsett med Google
+      </ion-button>
+
+      <ion-button expand="block" size="large" color="dark" (click)="loginWithApple()">
+        <ion-icon name="logo-apple" slot="start"></ion-icon>
+        Fortsett med Apple
+      </ion-button>
+    </div>
+  </div>
+</ion-content>
